@@ -38,9 +38,10 @@ public class fileChoose extends javax.swing.JFrame {
 
         jFileChooser2 = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Destino");
 
+        jFileChooser2.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
         jFileChooser2.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         jFileChooser2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

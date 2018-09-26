@@ -5,13 +5,13 @@
  */
 package simuladordeautomatos;
 
-import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import javafx.stage.DirectoryChooser;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +22,7 @@ public class fileChoose extends javax.swing.JFrame {
     /**
      * Creates new form fileChoose
      */
-    public static FileReader fileTXT;
+    
     public fileChoose() {
         initComponents();
     }
@@ -75,20 +75,21 @@ public class fileChoose extends javax.swing.JFrame {
 
     private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
         // TODO add your handling code here:
-        int ret = jFileChooser2.showOpenDialog(this);
-        if (ret == JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser2.getSelectedFile();
-            try {
-                // What to do with the file, e.g. display it in a TextArea
-                fileTXT = new FileReader(file.getAbsolutePath());
-                JOptionPane.showMessageDialog(null,fileTXT.toString());
-            } catch (IOException ex) {
-                System.out.println("problem accessing file" + file.getAbsolutePath());
-            }
-        } else {
-            System.out.println("File access cancelled by user.");
+        File f = jFileChooser2.getSelectedFile();
+        String path = f.getAbsolutePath();
+        
+
+        Writer output = null;
+        File file = new File(path.concat("/file.txt"));
+
+        try {
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(principal.file);
+            output.close();
+        } catch (IOException ex) {
+            Logger.getLogger(fileChoose.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jFileChooser2ActionPerformed
 
     /**

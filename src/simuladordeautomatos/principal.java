@@ -25,7 +25,7 @@ public class principal extends javax.swing.JFrame {
      * Creates new form principal
      */
     public static BufferedReader lerArq;
-    public String file;
+    public static String file;
 
     /**
      *
@@ -428,7 +428,6 @@ public class principal extends javax.swing.JFrame {
                 t = lerArq.readLine();
             }
             jTextArea1.setText(st);
-            file = st;
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         } catch (NullPointerException e) {
@@ -445,19 +444,9 @@ public class principal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        file = jTextArea1.getText();
+        new fileChoose().setVisible(true);
 
-        try {
-            String dest = JOptionPane.showInputDialog("Diretório para salvar arquivo:");
-            Writer output = null;
-            File file = new File(dest.concat("/file.txt"));
-
-            output = new BufferedWriter(new FileWriter(file));
-            output.write(jTextArea1.getText());
-            output.close();
-
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -297,7 +297,7 @@ public class principal extends javax.swing.JFrame {
                                 } else {
                                     if(!e1.isInicializado()){
                                         e1.setNum(d2);
-
+                                        listaEstado.add(e1);
                                     }            
                                     s.setProxEstado(e1);
                                     e.setListaSimb(s);
@@ -307,13 +307,17 @@ public class principal extends javax.swing.JFrame {
                                 listaEstado = new ArrayList<estado>();
                                 e.setNum(d1);
                                 s.setValor(simb);
-                                e1.setNum(d2);
-                                s.setProxEstado(e1);
-                                e.setListaSimb(s);
                                 e.setInicializado(true);
-                                e1.setInicializado(true);
+                                if(d1!=d2){
+                                    e1.setInicializado(true);
+                                    e1.setNum(d2);
+                                    s.setProxEstado(e1);
+                                    listaEstado.add(e1);
+                                } else {
+                                    s.setProxEstado(e);
+                                }
+                                e.setListaSimb(s);
                                 listaEstado.add(e);
-                                listaEstado.add(e1);
                             }
                         }
                         break;

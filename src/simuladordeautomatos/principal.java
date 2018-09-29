@@ -239,8 +239,12 @@ public class principal extends javax.swing.JFrame {
         if (instList.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Lista sem instruções!", "Erro", 0);
         } else {
-            int i = 0, j = 0, d1 = 0, d2 = 0, state = 0;
+            int i, j, d1 = 0, d2 , state = 0;
             char c, simb = ' ';
+            if(listaEstado!=null){
+                listaEstado.clear();
+                listaEstado=null;
+            }
             estado e = new estado(), e1 = new estado();
             simbolo s = new simbolo();
             String dt1 = new String(), dt2 = new String(), finais = new String(), inicial = new String();

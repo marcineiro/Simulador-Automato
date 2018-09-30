@@ -31,22 +31,23 @@ public class ajuda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("<html>Para criar um autômato, a Lista de Instruções <br>deve estar preenchida. <br>Isto pode ser feito de duas formas:<br><br>1. Escolhendo um arquivo .txt, <br>clicando no botão Escolher Arquivo e depois de escolhido, no botão Atualizar Lista.<br><br>2. Digitar diretamente a Lista de Instruções.<br><br><br>Depois, é só clicar em Criar Automato e testar as sentenças");
+        jLabel1.setText("<html>Para criar um autômato, a Lista de Instruções <br>deve estar preenchida. <br>Isto pode ser feito de duas formas:<br><br>1. Escolhendo um arquivo .txt, <br>clicando no botão Escolher Arquivo.<br><br>2. Digitar diretamente a Lista de Instruções.<br><br><br>Depois, é só clicar em Criar Automato e testar as sentenças");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

@@ -68,7 +68,8 @@ public class principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(250, 0));
         setPreferredSize(new java.awt.Dimension(1059, 900));
         setSize(new java.awt.Dimension(800, 780));
 

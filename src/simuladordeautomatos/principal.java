@@ -284,6 +284,7 @@ public class principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String instList = jTextArea1.getText();
+        jLabel3.setText("");
         if (instList.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Lista sem instruções!", "Erro", 0);
         } else {
@@ -297,181 +298,190 @@ public class principal extends javax.swing.JFrame {
             simbolo s = new simbolo();
             String dt1 = new String(), dt2 = new String(), finais = new String(), inicial = new String();
 
-            for (i = 0; i < instList.length(); i++) {
-                c = instList.charAt(i);
-                switch (state) {
-                    case 0:
-                        e = new estado();
-                        e1 = new estado();
-                        s = new simbolo();
-                        if (c >= '0' && c <= '9') {
-                            state = 1;
-                            dt1 += c;
-                        }
-                        if (c == 'I') {
-                            state = 9;
-                        }
-                        if (c == 'F') {
-                            state = 6;
-                        }
-                        break;
+            if(!opt){
+                for (i = 0; i < instList.length(); i++) {
+                    c = instList.charAt(i);
+                    switch (state) {
+                        case 0:
+                            e = new estado();
+                            e1 = new estado();
+                            s = new simbolo();
+                            if (c >= '0' && c <= '9') {
+                                state = 1;
+                                dt1 += c;
+                            }
+                            if (c == 'I') {
+                                state = 9;
+                            }
+                            if (c == 'F') {
+                                state = 6;
+                            }
+                            break;
 
-                    case 1:
-                        if (c == ',') {
-                            state = 2;
-                            d1 = Integer.parseInt(dt1);
-                        } else if (c <= '9' && c >= '0') {
-                            dt1 += c;
-                        }
-                        break;
+                        case 1:
+                            if (c == ',') {
+                                state = 2;
+                                d1 = Integer.parseInt(dt1);
+                            } else if (c <= '9' && c >= '0') {
+                                dt1 += c;
+                            }
+                            break;
 
-                    case 2:
-                        if (c == '\\') {
-                            state = 12;
-                        } else {
-                            simb = c;
-                            state = 3;
-                        }
-                        break;
+                        case 2:
+                            if (c == '\\') {
+                                state = 12;
+                            } else {
+                                simb = c;
+                                state = 3;
+                            }
+                            break;
 
-                    case 3:
-                        if (c == ',') {
-                            state = 4;
-                        }
-                        break;
+                        case 3:
+                            if (c == ',') {
+                                state = 4;
+                            }
+                            break;
 
-                    case 4:
-                        if (c >= '0' && c <= '9') {
-                            state = 5;
-                            dt2 += c;
-                        }
-                        break;
+                        case 4:
+                            if (c >= '0' && c <= '9') {
+                                state = 5;
+                                dt2 += c;
+                            }
+                            break;
 
-                    case 5:
-                        if (c >= '0' && c <= '9') {
-                            dt2 += c;
-                        } else if (c == '\n') {
-                            state = 0;
-                            dt1 = new String();
-                            d2 = Integer.parseInt(dt2);
-                            dt2 = new String();
-                            s.setValor(simb);                            
-                            if (listaEstado != null) {
-                                for (j = 0; j < listaEstado.size(); j++) {
-                                    if (listaEstado.get(j).getNum() == d1) {
-                                        e = listaEstado.get(j);
-                                    }
-                                    if (listaEstado.get(j).getNum() == d2) {
-                                        if(d1!=d2){
-                                            e1 = listaEstado.get(j);
-                                        } else {
-                                            e1 = e;
+                        case 5:
+                            if (c >= '0' && c <= '9') {
+                                dt2 += c;
+                            } else if (c == '\n') {
+                                state = 0;
+                                dt1 = new String();
+                                d2 = Integer.parseInt(dt2);
+                                dt2 = new String();
+                                s.setValor(simb);                            
+                                if (listaEstado != null) {
+                                    for (j = 0; j < listaEstado.size(); j++) {
+                                        if (listaEstado.get(j).getNum() == d1) {
+                                            e = listaEstado.get(j);
+                                        }
+                                        if (listaEstado.get(j).getNum() == d2) {
+                                            if(d1!=d2){
+                                                e1 = listaEstado.get(j);
+                                            } else {
+                                                e1 = e;
+                                            }
                                         }
                                     }
-                                }
-                                if(e1.equals(e)){
-                                    s.setProxEstado(e1);
-                                    e.setListaSimb(s);
+                                    if(e1.equals(e)){
+                                        s.setProxEstado(e1);
+                                        e.setListaSimb(s);
+                                    } else {
+                                        if(!e1.isInicializado()){
+                                            e1.setNum(d2);
+                                            listaEstado.add(e1);
+                                        }            
+                                        s.setProxEstado(e1);
+                                        e.setListaSimb(s);
+
+                                    }
                                 } else {
-                                    if(!e1.isInicializado()){
+                                    listaEstado = new ArrayList<estado>();
+                                    e.setNum(d1);
+                                    s.setValor(simb);
+                                    e.setInicializado(true);
+                                    if(d1!=d2){
+                                        e1.setInicializado(true);
                                         e1.setNum(d2);
+                                        s.setProxEstado(e1);
                                         listaEstado.add(e1);
-                                    }            
-                                    s.setProxEstado(e1);
+                                    } else {
+                                        s.setProxEstado(e);
+                                    }
                                     e.setListaSimb(s);
-                                    
-                                }
-                            } else {
-                                listaEstado = new ArrayList<estado>();
-                                e.setNum(d1);
-                                s.setValor(simb);
-                                e.setInicializado(true);
-                                if(d1!=d2){
-                                    e1.setInicializado(true);
-                                    e1.setNum(d2);
-                                    s.setProxEstado(e1);
-                                    listaEstado.add(e1);
-                                } else {
-                                    s.setProxEstado(e);
-                                }
-                                e.setListaSimb(s);
-                                listaEstado.add(e);
-                            }
-                        }
-                        break;
-                        
-                    case 6:
-                        if(c=='=')
-                            state = 7;
-                        break;
-                        
-                    case 7:
-                        if(c>='0'&&c<='9'){
-                            state = 8;
-                            finais += c;
-                        }
-                        break;
-                        
-                    case 8:
-                        if(c==','){
-                            state = 7;
-                            for(j=0;j<listaEstado.size();j++){
-                                if(listaEstado.get(j).getNum()==Integer.parseInt(finais)){
-                                    listaEstado.get(j).setAceit(true);
+                                    listaEstado.add(e);
                                 }
                             }
-                            finais = new String();
-                        }
-                        if(c>='0'&&c<='9'){
-                            finais += c;
-                        }
-                        if(c=='\n'){
-                            state = 0;
-                            for(j=0;j<listaEstado.size();j++){
-                                if(listaEstado.get(j).getNum()==Integer.parseInt(finais)){
-                                    listaEstado.get(j).setAceit(true);
-                                }
+                            break;
+
+                        case 6:
+                            if(c=='=')
+                                state = 7;
+                            break;
+
+                        case 7:
+                            if(c>='0'&&c<='9'){
+                                state = 8;
+                                finais += c;
                             }
-                            finais = new String();
-                        }
-                        break;
-                        
-                    case 9:
-                        if(c=='=')
-                            state = 10;
-                        break;
-                        
-                    case 10:
-                        if(c>='0'&&c<='9'){
-                            state = 11;
-                            inicial += c;
-                        }
-                        break;
-                        
-                    case 11:
-                        if(c>='0'&&c<='9')
-                            inicial += c;
-                        if(c=='\n'){
-                            state = 0;
-                            for(j=0;j<listaEstado.size();j++){
-                                if(listaEstado.get(j).getNum()==Integer.parseInt(inicial)){
-                                    listaEstado.get(j).setInicial(true);
+                            break;
+
+                        case 8:
+                            if(c==','){
+                                state = 7;
+                                for(j=0;j<listaEstado.size();j++){
+                                    if(listaEstado.get(j).getNum()==Integer.parseInt(finais)){
+                                        listaEstado.get(j).setAceit(true);
+                                    }
                                 }
+                                finais = new String();
                             }
-                            inicial = new String();
-                        }
-                        break;
-                        
-                    case 12:
-                        if(c==','||c=='I'||c=='F'||c=='\\'||c=='='){
-                            simb = c;
-                            state = 3;
-                        }
-                        break;
-                            
+                            if(c>='0'&&c<='9'){
+                                finais += c;
+                            }
+                            if(c=='\n'){
+                                state = 0;
+                                for(j=0;j<listaEstado.size();j++){
+                                    if(listaEstado.get(j).getNum()==Integer.parseInt(finais)){
+                                        listaEstado.get(j).setAceit(true);
+                                    }
+                                }
+                                finais = new String();
+                            }
+                            break;
+
+                        case 9:
+                            if(c=='=')
+                                state = 10;
+                            break;
+
+                        case 10:
+                            if(c>='0'&&c<='9'){
+                                state = 11;
+                                inicial += c;
+                            }
+                            break;
+
+                        case 11:
+                            if(c>='0'&&c<='9')
+                                inicial += c;
+                            if(c=='\n'){
+                                state = 0;
+                                for(j=0;j<listaEstado.size();j++){
+                                    if(listaEstado.get(j).getNum()==Integer.parseInt(inicial)){
+                                        listaEstado.get(j).setInicial(true);
+                                    }
+                                }
+                                inicial = new String();
+                            }
+                            break;
+
+                        case 12:
+                            if(c==','||c=='I'||c=='F'||c=='\\'||c=='='){
+                                simb = c;
+                                state = 3;
+                            }
+                            break;
+
+                    }
                 }
+            
+                if(listaEstado!=null){
+                    JOptionPane.showMessageDialog(null, "Autômato criado com sucesso!");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Lista não corresponde a autômato!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,"Montar RegEx");
             }
-            JOptionPane.showMessageDialog(null, "Autômato criado com sucesso!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

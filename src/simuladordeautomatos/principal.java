@@ -75,7 +75,6 @@ public class principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(250, 0));
-        setPreferredSize(new java.awt.Dimension(1059, 900));
         setSize(new java.awt.Dimension(800, 780));
 
         jTextArea1.setColumns(6);
@@ -188,7 +187,7 @@ public class principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -234,11 +233,11 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(108, 108, 108)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -249,31 +248,31 @@ public class principal extends javax.swing.JFrame {
                                 .addComponent(jButton6))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(686, 686, 686))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton6))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 238, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(96, 96, 96)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -480,7 +479,9 @@ public class principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Lista não corresponde a autômato!");
                 }
             } else {
-                JOptionPane.showMessageDialog(null,"Montar RegEx");
+                JOptionPane.showMessageDialog(null, "Modo de \"Expressões Regulares\" "
+                        + "selecionado!\n"
+                        + "Não é necessário criar, somente testar a sentença.");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -551,49 +552,59 @@ public class principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         String sentence = jTextField1.getText(), toPut = new String(), out = new String("<html>");
-        char c;
-        int n = 0;
-        boolean rec = false;
-        estado e;
-        ArrayList<simbolo> s = new ArrayList<simbolo>();
-        if(listaEstado!=null){
-            e = listaEstado.get(n);
-            try{
-                    while(!e.isInicial()){
-                        e=listaEstado.get(n++);
-                    }
-                } catch(NullPointerException npe){
-                    JOptionPane.showMessageDialog(null,npe
-                            +"\nNão foi definido estado inicial para o autômato.");
-                }
-            for(int i = 0;i<sentence.length();i++){
-                c = sentence.charAt(i);
-                s = e.getListaSimb();
-                toPut = String.format("<span color=red> q%d </span>",e.getNum());
+        if(!opt){
+            char c;
+            int n = 0;
+            boolean rec = false;
+            estado e;
+            ArrayList<simbolo> s = new ArrayList<simbolo>();
+            if(listaEstado!=null){
+                e = listaEstado.get(n);
                 try{
-                    out += sentence.substring(0,i)+toPut+"<span color=blue>"+sentence.charAt(i)+"</span>"+sentence.substring(i+1)+"<br>";
-                } catch(IndexOutOfBoundsException iobe){
-                    out += toPut+sentence.substring(i)+"<br>";
-                }
-                if(s!=null){
-                    for(int j=0;j<s.size();j++){
-                        if(s.get(j).valor==c){
-                            e=s.get(j).getProxEstado();
+                        while(!e.isInicial()){
+                            e=listaEstado.get(n++);
+                        }
+                    } catch(NullPointerException npe){
+                        JOptionPane.showMessageDialog(null,npe
+                                +"\nNão foi definido estado inicial para o autômato.");
+                    }
+                for(int i = 0;i<sentence.length();i++){
+                    c = sentence.charAt(i);
+                    s = e.getListaSimb();
+                    toPut = String.format("<span color=red> q%d </span>",e.getNum());
+                    try{
+                        out += sentence.substring(0,i)+toPut+"<span color=blue>"+sentence.charAt(i)+"</span>"+sentence.substring(i+1)+"<br>";
+                    } catch(IndexOutOfBoundsException iobe){
+                        out += toPut+sentence.substring(i)+"<br>";
+                    }
+                    if(s!=null){
+                        for(int j=0;j<s.size();j++){
+                            if(s.get(j).valor==c){
+                                e=s.get(j).getProxEstado();
+                            }
                         }
                     }
-                }
 
-            }
-            out += String.format(sentence+"<span color=red> q%d </span>", e.getNum());
-            jLabel3.setText(out);
-            if(e.isAceit()){
-                JOptionPane.showMessageDialog(null, "Sentença reconhecida!");
+                }
+                out += String.format(sentence+"<span color=red> q%d </span>", e.getNum());
+                jLabel3.setText(out);
+                if(e.isAceit()){
+                    JOptionPane.showMessageDialog(null, "Sentença reconhecida!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sentença não reconhecida!","",JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Sentença não reconhecida!","",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Não existe autômato criado."
+                        + "\nPara criar adicione texto na Lista de Instruções", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Não existe autômato criado."
-                    + "\nPara criar adicione texto na Lista de Instruções", "Warning", JOptionPane.WARNING_MESSAGE);
+            String rx = jTextArea1.getText();
+            if(sentence.matches(rx)){
+                out += String.format(sentence+" <br> <span color=green> Sentenca reconhecida </span>");
+            }else{
+                out += String.format(sentence+" <br> <span color=red> Sentenca não reconhecida </span>");
+            }
+            jLabel3.setText(out);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

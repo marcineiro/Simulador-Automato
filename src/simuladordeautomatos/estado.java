@@ -12,11 +12,12 @@ import java.util.ArrayList;
  * @author murilo
  */
 public class estado {
-    public int num;
-    public ArrayList<simbolo> listaSimb;
-    public boolean inicial;
-    public boolean aceit;
-    public boolean inicializado;
+    private int num;
+    private ArrayList<simbolo> listaSimb;
+    private boolean inicial;
+    private boolean aceit;
+    private boolean inicializado;
+    private ArrayList<reg> regEx;
 
     public boolean isInicializado() {
         return inicializado;
@@ -30,9 +31,22 @@ public class estado {
         return listaSimb;
     }
 
+    public void setReg(reg r) {
+        if(this.regEx==null){
+            this.regEx = new ArrayList<>();
+        }
+        this.regEx.add(r);
+    }
+
+    public ArrayList<reg> getRegEx() {
+        return regEx;
+    }
+    
+    
+    
     public void setListaSimb(simbolo simb) {
         if(this.listaSimb==null){
-            this.listaSimb = new ArrayList<simbolo>();
+            this.listaSimb = new ArrayList<>();
         }
         this.listaSimb.add(simb);
     }
@@ -61,4 +75,52 @@ public class estado {
         this.num = num;
     }  
 
+    public String getExp(estado e){
+        String str="";
+        if(!this.temEx(e)){
+            for(int i=0;i<listaSimb.size();i++){
+                if(listaSimb.get(i).getProxEstado().equals(e)){
+                    if(!str.isEmpty())
+                        str+="|";
+                    str+=listaSimb.get(i).getValor();
+                }
+            }
+        } else {
+            str = this.getEx(e);
+        }
+        return str;
+    }
+    
+    public boolean temEx(estado e){
+        boolean t = false;
+        if(regEx!=null){
+            for(int i=0;i<regEx.size();i++){
+                if(regEx.get(i).getE().equals(e))
+                    t=true;
+            }
+        }
+        return t;
+    }
+    
+    public boolean temTrans(estado e){
+        boolean t = false;
+        if(listaSimb!=null){
+            for(int i = 0;i<listaSimb.size();i++){
+                if(listaSimb.get(i).proxEstado.equals(e))
+                    t = true;
+            }
+        }
+        return t;
+    }
+
+    private String getEx(estado e) {
+        String str = "";
+        if(regEx!=null){
+            for(int i=0;i<regEx.size();i++){
+                if(regEx.get(i).getE().equals(e))
+                    str = regEx.get(i).getEx();
+            }
+        }
+        return str;
+    }
 }

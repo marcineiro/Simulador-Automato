@@ -6,19 +6,13 @@
 package simuladordeautomatos;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+
 
 /**
  *
@@ -32,6 +26,8 @@ public class principal extends javax.swing.JFrame {
     public static BufferedReader lerArq;
     public static String file;
     public static boolean opt = false;
+    public static char vazio = 949;
+    public static char nula = 981;
 
     /**
      *
@@ -64,6 +60,7 @@ public class principal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -133,6 +130,13 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("Converter p/ RegEx");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,12 +146,10 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,6 +162,8 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,11 +238,11 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(108, 108, 108)
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +252,7 @@ public class principal extends javax.swing.JFrame {
                                 .addComponent(jButton6))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(497, Short.MAX_VALUE))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,11 +272,9 @@ public class principal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -627,6 +629,135 @@ public class principal extends javax.swing.JFrame {
         opt = true;
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    public String simplify(String r1,String r2,String r3,String r4){
+        String str="";
+        if(r1.equals(String.valueOf(vazio)))
+            r1 = "";
+        if(r2.equals(String.valueOf(vazio)))
+            r2 = "";
+        if(r3.equals(String.valueOf(vazio)))
+            r3 = "";
+        if(r1.equals(nula)||r2.equals(nula)||r3.equals(nula)){
+            str = r4;
+        } else {
+            if(r4.equals(nula)){
+                str = "("+r1+")"+"("+r2+")"+"*"+"("+r3+")";
+            }else{
+                str = "("+r1+")"+"("+r2+")"+"*"+"("+r3+")"+"|"+"("+r4+")";
+            }
+        }
+        return str;
+    }
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        if(listaEstado!=null){
+            estado e = new estado(), inicial = new estado();
+            estado ef = new estado();
+            simbolo s;
+            e.setInicial(true);
+            ArrayList<estado> finais = new ArrayList<>();
+            for(int i=0;i<listaEstado.size();i++){
+                if(listaEstado.get(i).isAceit()){
+                    finais.add(listaEstado.get(i));
+                }else{
+                    s = new simbolo();
+                    s.setValor(nula);
+                    s.setProxEstado(ef);
+                    listaEstado.get(i).setListaSimb(s);
+                }
+                if(listaEstado.get(i).isInicial()){
+                    inicial = listaEstado.get(i);
+                }else{
+                    s = new simbolo();
+                    s.setValor(nula);
+                    s.setProxEstado(listaEstado.get(i));
+                    e.setListaSimb(s);
+                }
+            }
+            inicial.setInicial(false);
+            e.setInicial(true);
+            ef.setAceit(true);
+            s = new simbolo();
+            s.setValor(vazio);
+            s.setProxEstado(inicial);
+            e.setListaSimb(s);
+            s = new simbolo();
+            s.setValor(nula);
+            s.setProxEstado(ef);
+            e.setListaSimb(s);
+            
+            
+            for(int i=0;i<finais.size();i++){
+                finais.get(i).setAceit(false);
+                s = new simbolo();
+                s.setValor(vazio);
+                s.setProxEstado(ef);
+                finais.get(i).setListaSimb(s);
+            }
+            
+            listaEstado.add(e);
+            listaEstado.add(ef);
+            estado eaux , qi, qj, qdel;
+            reg raux;
+            ArrayList<estado> origem, destino, estA = new ArrayList<>();
+            ArrayList<reg> regA = new ArrayList<>();
+            reg r;
+            int i;
+            String r1,r2,r3,r4,r0;
+            while(listaEstado.size()>2){
+                qdel = null;
+                origem = new ArrayList<>();
+                destino = new ArrayList<>();
+                i=0;
+                while(qdel==null){
+                    if(!listaEstado.get(i).isInicial() && !listaEstado.get(i).isAceit()){
+                        qdel = listaEstado.get(i);
+                    }
+                    i++;
+                }
+                for(int j=0;j<listaEstado.size();j++){
+                    eaux = listaEstado.get(j);
+                    if(!eaux.equals(qdel)){
+                        if(eaux.temTrans(qdel))
+                            origem.add(eaux);
+                        if(qdel.temTrans(eaux))
+                            destino.add(eaux);
+                    }
+                }
+                for(int j=0;j<origem.size();j++){
+                    for(int k=0;k<destino.size();k++){
+                        qi=origem.get(j);
+                        qj=destino.get(k);
+                        r1 = qi.getExp(qdel);
+                        r2 = qdel.getExp(qdel);
+                        r3 = qdel.getExp(qj);
+                        r4 = qi.getExp(qj);
+                        
+                        
+                        r0 = simplify(r1, r2, r3, r4);
+                        
+                        
+                        
+                        r = new reg(r0, qj);
+                        estA.add(qi);
+                        regA.add(r);
+                    }
+                }
+                listaEstado.remove(qdel);
+                for(int j=0;j<estA.size();j++){
+                    eaux = estA.get(j);
+                    raux = regA.get(j);
+                    eaux.setReg(raux);
+                }
+            }
+            jTextArea1.setText(listaEstado.get(0).getExp(listaEstado.get(1)));
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Não há autômato criado!\n");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -670,6 +801,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

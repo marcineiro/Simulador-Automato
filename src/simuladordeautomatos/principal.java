@@ -627,7 +627,6 @@ public class principal extends javax.swing.JFrame {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
         opt = true;
-        simplify(String.valueOf(vazio),String.valueOf(vazio),String.valueOf(vazio),String.valueOf(vazio));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     public String simplify(String r1,String r2,String r3,String r4){
@@ -668,14 +667,23 @@ public class principal extends javax.swing.JFrame {
                 }
             }
             
+            str = r1+r2+r3;
+            
             if(r4.equals(String.valueOf(vazio)) || r4.equals(String.valueOf(nula))){
                 r4 = "";
             } else {
                 if(r4.length()>1){
-                    r4 = "("+r4+")";
+                    if(str.length()>0){
+                        r4 = "|("+r4+")";
+                    }else{
+                        r4 = "("+r4+")";
+                    }
+                } else {
+                    if(str.length()>0)
+                        r4 = "|"+r4;
                 }
             }
-            str = r1+r2+r3+"|"+r4;
+            str += r4;
         }        
         return str;
     }

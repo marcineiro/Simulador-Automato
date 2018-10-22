@@ -627,25 +627,56 @@ public class principal extends javax.swing.JFrame {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
         opt = true;
+        simplify(String.valueOf(vazio),String.valueOf(vazio),String.valueOf(vazio),String.valueOf(vazio));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     public String simplify(String r1,String r2,String r3,String r4){
-        String str="";
-        if(r1.equals(String.valueOf(vazio)))
-            r1 = "";
-        if(r2.equals(String.valueOf(vazio)))
-            r2 = "";
-        if(r3.equals(String.valueOf(vazio)))
-            r3 = "";
-        if(r1.equals(nula)||r2.equals(nula)||r3.equals(nula)){
-            str = r4;
-        } else {
-            if(r4.equals(nula)){
-                str = "("+r1+")"+"("+r2+")"+"*"+"("+r3+")";
-            }else{
-                str = "("+r1+")"+"("+r2+")"+"*"+"("+r3+")"+"|"+"("+r4+")";
+        String str="",s = String.valueOf(nula);
+        boolean b1 = r1.equals(String.valueOf(nula)),
+                b2 = r2.equals(String.valueOf(nula)),
+                        b3 = r3.equals(String.valueOf(nula));
+        if(b1 || b2 || b3){
+            if(r4.equals(String.valueOf(nula)) || r4.equals(String.valueOf(vazio))){
+                str="";
+            } else {
+                str+=r4;
             }
-        }
+        } else {
+            if(r1.equals(String.valueOf(vazio))){
+                r1 = "";
+            } else {
+                if(r1.length()>1){
+                    r1 = "("+r1+")";
+                }
+            }
+            
+            if(r2.equals(String.valueOf(vazio))){
+                r2 = "";
+            } else {
+                if(r2.length()>1){
+                    r2 = "("+r2+")*";
+                } else {
+                    r2 += "*";
+                }
+            }
+            
+            if(r3.equals(String.valueOf(vazio))){
+                r3 = "";
+            } else {
+                if(r3.length()>1){
+                    r3 = "("+r3+")";
+                }
+            }
+            
+            if(r4.equals(String.valueOf(vazio)) || r4.equals(String.valueOf(nula))){
+                r4 = "";
+            } else {
+                if(r4.length()>1){
+                    r4 = "("+r4+")";
+                }
+            }
+            str = r1+r2+r3+"|"+r4;
+        }        
         return str;
     }
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
